@@ -1,0 +1,4 @@
+---
+doc_root: /opt/html
+port_number: 80
+# vars file for gusevvs

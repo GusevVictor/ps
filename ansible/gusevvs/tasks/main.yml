@@ -1,0 +1,39 @@
+---
+- name: Set timezone to Europe/Moscow
+  community.general.timezone:
+    name: Europe/Moscow
+  when: inventory_hostname in groups['all']
+
+
+- name: httpd installed
+  ansible.builtin.yum:
+    name: httpd
+    state: latest
+  when: inventory_hostname in groups['apache']
+
+- name: httpd service enabled
+  ansible.builtin.service:
+    name: httpd
+    enabled: true
+    state: started
+  when: inventory_hostname in groups['apache']
+
+- name: "Creating Document root"
+  file:
+    state: directory
+    dest: "{{ doc_root }}"
+  when: inventory_hostname in groups['apache']
+
+- name: "Copy webpages"
+  copy:
+    content: "<h1> Welcome to {{ansible_hostname}} </h1>"
+    dest: "{{ doc_root }}/index.html"
+  when: inventory_hostname in groups['apache']
+
+- name: "Configuration File"
+  template:
+    src: "./apache_custom_page.j2"
+    dest: "/etc/httpd/conf.d/apache_custom_page.conf"
+  notify: "apache server restart"
+  when: inventory_hostname in groups['apache']
+# tasks file for gusevvs

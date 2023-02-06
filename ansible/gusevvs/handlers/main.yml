@@ -1,0 +1,7 @@
+---
+- name: "apache server restart"
+  become: true
+  service:
+    name: "httpd"
+    state: restarted
+# handlers file for gusevvs
