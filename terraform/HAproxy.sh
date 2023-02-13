@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCEdlmnZfHOqfMIx4Y2w1E3WjVi24uZBpMjI81fDOBtSPMK/+P9Bu8cmT0Is5k8F+kIox7LdaGoTIe8ae4cTzjaM42i4K37rNIHaoJoqT0CBFKn8BqJHgxhvvxr3iy8vAT5hiXxmgzfhNCNsxaihvCTBNCv7VZy0YDT+HZstFtAn6x/DR71VIDAvXK6paplZJnsrytp/wKT870FG2snEabKKmUknWLkVjK+95Nm8s3Ct3q270hOntpN3kRRhdv8bN6IGFZpL9Bbco/Z2/j3G4qSGAztKfO/5aPCUzOH64BrdizEE84mbHFoPGF/7X2JZ1zdfj2uSD9h9XtVt49DLjCB rsa-key-20230211" >> /home/almalinux/.ssh/authorized_keys
