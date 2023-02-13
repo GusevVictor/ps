@@ -1,0 +1,7 @@
+[haproxy_vm]
+HAproxy ansible_host=192.168.0.225 ansible_ssh_user=almalinux
+[apache_vms]
+VM1 ansible_host=192.168.0.223 ansible_ssh_user=almalinux
+VM2 ansible_host=192.168.0.224 ansible_ssh_user=almalinux
+VM3 ansible_host=192.168.0.227 ansible_ssh_user=almalinux
+

@@ -1,0 +1,12 @@
+- hosts: all
+  become: yes
+  vars:
+    haproxy_backend_servers:
+      - name: VM1
+        address_and_port: 192.168.0.223:80
+      - name: VM2
+        address_and_port: 192.168.0.224:80
+      - name: VM3
+        address_and_port: 192.168.0.227:80  
+  roles:
+   - gusevvs

@@ -1,0 +1,46 @@
+---
+- name: Install the latest version of apache
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+  when: inventory_hostname in groups['apache_vms'] 
+
+- name: Creating Document root in opt dir
+  file:
+    state: directory
+    dest: "{{ doc_root }}"
+  when: inventory_hostname in groups['apache_vms']
+
+- name: Copy welcome html webpage
+  copy:
+    content: "<h1> Welcome to {{ansible_hostname|upper}} </h1>"
+    dest: "{{ doc_root }}/index.html"
+  when: inventory_hostname in groups['apache_vms']
+
+- name: Copy apache configuration in place
+  template:
+    src: apache_custom_page.j2
+    dest: "/etc/httpd/conf.d/apache_custom_page.conf"
+  notify: apache server restart
+  when: inventory_hostname in groups['apache_vms']
+
+- name: httpd service enabled
+  ansible.builtin.service:
+    name: httpd
+    enabled: true
+    state: started
+  when: inventory_hostname in groups['apache_vms']
+
+- name: Install the latest version of haproxy
+  ansible.builtin.dnf:
+    name: haproxy
+    state: latest
+  when: inventory_hostname in groups['haproxy_vm']
+
+- name: Copy HAProxy configuration in place
+  template:
+    src: haproxy.cfg.j2
+    dest: /etc/haproxy/haproxy.cfg
+    mode: 0644
+  notify: haproxy server restart
+  when: inventory_hostname in groups['haproxy_vm']  

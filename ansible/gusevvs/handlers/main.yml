@@ -1,0 +1,12 @@
+---
+- name: apache server restart
+  become: yes
+  service:
+    name: httpd
+    state: restarted
+
+- name: haproxy server restart
+  become: yes
+  service:
+    name: haproxy
+    state: restarted
