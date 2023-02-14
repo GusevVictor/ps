@@ -38,6 +38,6 @@ frontend main
 
 backend app
     balance     roundrobin
-{% for backend in haproxy_backend_servers %}
-	server {{ backend.name }} {{ backend.address_and_port }} check
+{% for host in groups ['apache_vms'] %}
+	server {{ hostvars[host]['ansible_hostname'] }} {{ hostvars[host]['ansible_facts']['default_ipv4']['address']}}:{{ apache_port }} check
 {% endfor %}	
